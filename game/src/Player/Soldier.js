@@ -57,7 +57,8 @@ export default class Soldier {
          this.sprite = scene.physics.add
             .sprite(x, y, "atlas-soldier", "soldier-front")
             .setSize(30, 40)
-            .setOffset(10, 24);
+            .setOffset(10, 24)
+            .setDepth(9);
 
         this.keys = scene.input.keyboard.createCursorKeys();
 

@@ -3,28 +3,9 @@ import Soldier from "../../../Player/Soldier";
 
 import 'phaser';
 
-var keyO, keyM, keyJ, keyE;
-var keyC, keyP;
-var keyP, keyT;
-var keyG, keyK;
-
-var keyB, keyN;
-
-var dialogueBackground;
+var keyB, keyI;
 
 var once = false;
-
-var soldierStat;
-
-var weaponName1s;
-
-var hud, buttons, tabPages;
-var weaponName1Text;
-var healthText;
-
-var weaponName1;
-var weaponQuantity1;
-var health;
 
 var p, n, distanceBetween2PC;
 
@@ -120,14 +101,8 @@ export default class Level0AdosCity extends Phaser.Scene {
        this.load.tilemapTiledJSON("level0AdosCity", "assets/stendhal/tiled/Level 0/ados/city.json");
 
        this.load.atlas("atlas-soldier", "assets/atlas/soldier/atlas-soldier.png", "assets/atlas/soldier/atlas-soldier.json");
-       this.load.atlas("atlas-knight", "assets/atlas/knight/atlas-knight.png", "assets/atlas/knight/atlas-knight.json");
-       this.load.atlas("atlas-zombi", "assets/atlas/zombi/atlas-zombi.png", "assets/atlas/zombi/atlas-zombi.json");
 
-       this.load.image('weaponName1', 'assets/images/knife.png');
-
-       this.load.image('blacklord', 'assets/stendhal/data/sprites/npc/blacklord.png');
-
-       this.load.image('zombiStaticSprite', 'assets/atlas/zombi/zombi-front.png');
+       this.load.image('pentacle', 'assets/images/pentacle.png');
 
 
     }
@@ -229,6 +204,7 @@ export default class Level0AdosCity extends Phaser.Scene {
             this.player = new Soldier(this, this.px, this.py);
         }
 
+
         this.physics.add.collider(this.player.sprite, this.collisionLayer);
         
 
@@ -237,28 +213,51 @@ export default class Level0AdosCity extends Phaser.Scene {
         camera.startFollow(this.player.sprite);
         camera.setBounds(0, 0, level0AdosCity.widthInPixels, level0AdosCity.heightInPixels);
 
-        
+         /* Add weapon: Knife */
+        var pentacle = this.add.image(2100, 3000, 'pentacle');
+        pentacle.setDepth(1);
+
         /* World size */
         mapWidth = level0AdosCity.widthInPixels;
         mapHeight = level0AdosCity.heightInPixels;
         
+        this.keyB = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.B);
 
+        this.keyI = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.I);
+        
 
     }
 
 
     update(time, delta) {
         this.player.update();
-        
-
 
         const pointer = this.input.activePointer;
         const worldPoint = pointer.positionToCamera(this.cameras.main);
+ 
+        if(this.keyB.isDown) {
+          console.log("Player position: " + this.player.sprite.x + " / " + this.player.sprite.y);
+        }
 
-    
-    
+        if(this.keyI.isDown) {
+          if (!this.keyOnceI) {    
+            console.log("Invocation");
+            if(this.player.sprite.x > 2091 &&  this.player.sprite.x < 2117 && this.player.sprite.y > 2980 && this.player.sprite.y < 3000) {
+               console.log("Call the Ancient One");
+               camera.shake(500);
+            }
+            this.keyOnceI = true;
+          }
+        }
 
-  
+        if(this.keyI.isUp) {
+          this.keyOnceI = false;
+        }
+
+
+
+
+ 
     }
 }
 

@@ -260,7 +260,8 @@ export default class Level0AdosCity extends Phaser.Scene {
         if(this.keyI.isDown) {
           if (!this.keyOnceI) {    
             console.log("Invocation");
-            if(this.player.sprite.x > 2091 &&  this.player.sprite.x < 2117 && this.player.sprite.y > 2980 && this.player.sprite.y < 3000) {
+            if(this.player.sprite.x > 2091 &&  this.player.sprite.x < 2117 && this.player.sprite.y > 2980 && this.player.sprite.y < 3000 &&
+               this.theHour >= 47 && this.theHour <= 70) {
                console.log("Call the Ancient One");
                this.events.emit('invokeAncientOne');
                camera.shake(500);

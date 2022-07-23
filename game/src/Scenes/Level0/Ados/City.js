@@ -102,6 +102,8 @@ export default class Level0AdosCity extends Phaser.Scene {
 
        this.load.image('pentacle', 'assets/images/pentacle.png');
 
+      this.load.image('night', 'assets/images/night.png');
+
 
     }
 
@@ -211,9 +213,18 @@ export default class Level0AdosCity extends Phaser.Scene {
         camera.startFollow(this.player.sprite);
         camera.setBounds(0, 0, level0AdosCity.widthInPixels, level0AdosCity.heightInPixels);
 
-         /* Add weapon: Knife */
+         /* Add pentacle */
         var pentacle = this.add.image(2100, 3000, 'pentacle');
         pentacle.setDepth(1);
+
+        /* Add night */
+        var night = this.add.image(-100, -100, 'night')
+                    .setOrigin(0, 0)
+                    .setScrollFactor(0)
+                    .setDepth(29);
+
+        night.alpha = 0.5;
+
 
         /* World size */
         mapWidth = level0AdosCity.widthInPixels;

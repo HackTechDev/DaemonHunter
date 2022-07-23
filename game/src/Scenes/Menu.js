@@ -23,7 +23,7 @@ export default class Menu extends Phaser.Scene {
   create () {
     this.add.image(0, 33, 'background').setOrigin(0).setScale(1);
 
-    this.missionButton = new Button(this, Config.width/2, Config.height/2, 'blueButton1', 'blueButton2', 'Mission', 'Mission1');
+    this.missionButton = new Button(this, Config.width/2, Config.height/2, 'blueButton1', 'blueButton2', 'Invocation', 'Mission1');
 
     // Options
     this.optionsButton = new Button(this, Config.width/2, Config.height/2 + 100, 'blueButton1', 'blueButton2', 'Options', 'Options');

@@ -31,7 +31,21 @@ export default class HUD extends Phaser.Scene {
         this.scene.get('Level0AdosCity').events.on('invokeAncientOne',  function() {
           console.log("Invoke Ancient One");
           action = this.add
-            .text(10, 500, "Invoke Ancient One", {
+            .text(10, 500, "Invoque un Grand Ancien", {
+              font: "18px monospace",
+              fill: "#000000",
+              padding: { x: 20, y: 10 },
+              backgroundColor: "#ffffff"
+            })
+            .setScrollFactor(0)
+            .setDepth(30);
+
+        }, this);
+
+        this.scene.get('Level0AdosCity').events.on('ancientOneCalled',  function() {
+          console.log("Invoke Ancient One");
+          action = this.add
+            .text(10, 500, "Un Grand Ancien apparaît !!", {
               font: "18px monospace",
               fill: "#000000",
               padding: { x: 20, y: 10 },
@@ -45,7 +59,7 @@ export default class HUD extends Phaser.Scene {
 
         this.scene.get('Level0AdosCity').events.on('removeTextDialog',  function() {
           action = this.add
-            .text(10, 500, "                ", {
+            .text(10, 500, "                               ", {
               font: "18px monospace",
               fill: "#000000",
               padding: { x: 20, y: 10 },

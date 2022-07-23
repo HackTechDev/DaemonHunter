@@ -244,6 +244,9 @@ export default class Level0AdosCity extends Phaser.Scene {
         this.theHour = 40;
         this.theAlpha = 0;
         this.time.addEvent({ delay: 1000, callback: cycleNightAndDay, callbackScope: this, loop: true });
+
+        /* */
+        this.callTheAncientOne = 0;
     }
 
 
@@ -262,12 +265,18 @@ export default class Level0AdosCity extends Phaser.Scene {
             console.log("Invocation");
             if(this.player.sprite.x > 2091 &&  this.player.sprite.x < 2117 && this.player.sprite.y > 2980 && this.player.sprite.y < 3000 &&
                this.theHour >= 47 && this.theHour <= 70) {
-               console.log("Call the Ancient One");
+               console.log("Call the Ancient One: " + this.callTheAncientOne);
                this.events.emit('invokeAncientOne');
                camera.shake(500);
-
+               this.callTheAncientOne++; 
                this.time.delayedCall(500, removeTextDialog, [], this);
+              if(this.callTheAncientOne >= 3) {
+                  console.log("The Ancient One has been called");
+                  this.events.emit('ancientOneCalled');
+              }
 
+
+              
             }
             this.keyOnceI = true;
           }
@@ -277,6 +286,8 @@ export default class Level0AdosCity extends Phaser.Scene {
           this.keyOnceI = false;
         }
 
+
+      
       this.theNight.alpha = this.theAlpha;
 
     }

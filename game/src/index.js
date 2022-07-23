@@ -3,6 +3,7 @@ import 'phaser';
 import Config from './Config/Config';
 import Level0AdosCity from './Scenes/Level0/Ados/City';
 
+import HUD from './Scenes/HUD';
 import Mission01 from './Scenes/Missions/Mission01';
 
 import Boot from './Scenes/Boot';
@@ -20,6 +21,7 @@ class Game extends Phaser.Game {
         super(Config);
         const music = new Music();
         this.globals = { music, bgMusic: null };
+        
         this.scene.add('Boot', Boot);
         this.scene.add('Preloader', Preloader);
         this.scene.add('Menu', Menu);
@@ -31,6 +33,10 @@ class Game extends Phaser.Game {
         this.scene.add('Level0AdosCity', Level0AdosCity);
         this.scene.add('Mission01', Mission01);
         this.scene.start('Boot');
+        
+        this.scene.add('HUD', HUD);
+
+
     }
 }
 

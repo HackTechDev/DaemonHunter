@@ -241,8 +241,9 @@ export default class Level0AdosCity extends Phaser.Scene {
         
 
         /* */
-        this.theHour = 0;
-        this.time.addEvent({ delay: 5000, callback: cycleNightAndDay, callbackScope: this, loop: true });
+        this.theHour = 40;
+        this.theAlpha = 0;
+        this.time.addEvent({ delay: 1000, callback: cycleNightAndDay, callbackScope: this, loop: true });
     }
 
 
@@ -275,7 +276,7 @@ export default class Level0AdosCity extends Phaser.Scene {
           this.keyOnceI = false;
         }
 
-      this.theNight.alpha = this.theHour;
+      this.theNight.alpha = this.theAlpha;
 
     }
 
@@ -289,11 +290,63 @@ function removeTextDialog() {
 
 
 function cycleNightAndDay() {
-  this.theHour += 0.1;
-  if(this.theHour > 1) {
-    this.theHour = 0;
+  if(this.theHour >= 40) {
+    this.theAlpha = 0.1;
   }
+  if(this.theHour >= 41) {
+    this.theAlpha = 0.2;
+  }
+  if(this.theHour >= 42) {
+    this.theAlpha = 0.3;
+  }
+  if(this.theHour >= 43) {
+    this.theAlpha = 0.4;
+  }
+  if(this.theHour >= 44) {
+    this.theAlpha = 0.5;
+  }
+  if(this.theHour >= 45) {
+    this.theAlpha = 0.6;
+  }
+  if(this.theHour >= 46) {
+    this.theAlpha = 0.7;
+  }
+  if(this.theHour >= 47) {
+    this.theAlpha = 0.8;
+  }
+
+  if(this.theHour >= 70) {
+    this.theAlpha = 0.7;
+  }
+  if(this.theHour >= 71) {
+    this.theAlpha = 0.6;
+  }
+  if(this.theHour >= 72) {
+    this.theAlpha = 0.5;
+  }
+  if(this.theHour >= 73) {
+    this.theAlpha = 0.4;
+  }
+  if(this.theHour >= 74) {
+    this.theAlpha = 0.3;
+  }
+  if(this.theHour >= 75) {
+    this.theAlpha = 0.2;
+  }
+  if(this.theHour >= 76) {
+    this.theAlpha = 0.1;
+  }
+  if(this.theHour >= 77) {
+    this.theAlpha = 0.0;
+  }
+
+   if(this.theHour >= 100) {
+    this.theHour = 40;
+  }
+
+
+
   console.log("The Hour: " + this.theHour);
-  
+  this.theHour += 1;
 } 
 

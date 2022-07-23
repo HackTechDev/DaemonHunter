@@ -11,6 +11,7 @@ var camera;
 
 var mapWidth, mapHeight;
 
+var pentacle, theNight, theDay;
 
 const Random = Phaser.Math.Between;
 
@@ -214,16 +215,16 @@ export default class Level0AdosCity extends Phaser.Scene {
         camera.setBounds(0, 0, level0AdosCity.widthInPixels, level0AdosCity.heightInPixels);
 
          /* Add pentacle */
-        var pentacle = this.add.image(2100, 3000, 'pentacle');
+        pentacle = this.add.image(2100, 3000, 'pentacle');
         pentacle.setDepth(1);
 
         /* Add night */
-        var night = this.add.image(-100, -100, 'night')
+        this.theNight = this.add.image(-100, -100, 'night')
                     .setOrigin(0, 0)
                     .setScrollFactor(0)
                     .setDepth(29);
 
-        night.alpha = 0.5;
+        this.theNight.alpha = 0.5;
 
 
         /* World size */
@@ -234,8 +235,14 @@ export default class Level0AdosCity extends Phaser.Scene {
 
         this.keyI = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.I);
         
+
+        /* */
         this.events.emit('displayHUD');
         
+
+        /* */
+        this.theHour = 0;
+        this.time.addEvent({ delay: 5000, callback: cycleNightAndDay, callbackScope: this, loop: true });
     }
 
 
@@ -268,7 +275,8 @@ export default class Level0AdosCity extends Phaser.Scene {
           this.keyOnceI = false;
         }
 
- 
+      this.theNight.alpha = this.theHour;
+
     }
 
 
@@ -279,4 +287,13 @@ function removeTextDialog() {
     this.events.emit('removeTextDialog');
 }
 
+
+function cycleNightAndDay() {
+  this.theHour += 0.1;
+  if(this.theHour > 1) {
+    this.theHour = 0;
+  }
+  console.log("The Hour: " + this.theHour);
+  
+} 
 

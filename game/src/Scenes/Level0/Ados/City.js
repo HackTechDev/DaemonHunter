@@ -11,7 +11,7 @@ var camera;
 
 var mapWidth, mapHeight;
 
-var pentacle, theNight, theDay;
+var pentacle, theNight, theDay, cthulhu;
 
 const Random = Phaser.Math.Between;
 
@@ -105,6 +105,7 @@ export default class Level0AdosCity extends Phaser.Scene {
 
       this.load.image('night', 'assets/images/night.png');
 
+      this.load.image('cthulhu', 'assets/images/cthulhu.png');
 
     }
 
@@ -227,6 +228,13 @@ export default class Level0AdosCity extends Phaser.Scene {
         this.theNight.alpha = 0.5;
 
 
+      /**/
+        cthulhu = this.add.image(2102, 2816, 'cthulhu');
+        cthulhu.setDepth(1);
+        cthulhu.setVisible(false);
+
+
+
         /* World size */
         mapWidth = level0AdosCity.widthInPixels;
         mapHeight = level0AdosCity.heightInPixels;
@@ -269,10 +277,13 @@ export default class Level0AdosCity extends Phaser.Scene {
                this.events.emit('invokeAncientOne');
                camera.shake(500);
                this.callTheAncientOne++; 
-               this.time.delayedCall(500, removeTextDialog, [], this);
-              if(this.callTheAncientOne >= 3) {
+                            if(this.callTheAncientOne >= 3) {
                   console.log("The Ancient One has been called");
+                  cthulhu.setVisible(true);
                   this.events.emit('ancientOneCalled');
+              } else {
+                 this.time.delayedCall(500, removeTextDialog, [], this);
+
               }
 
 

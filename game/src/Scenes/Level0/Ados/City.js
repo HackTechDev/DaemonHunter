@@ -5,8 +5,6 @@ import 'phaser';
 
 var keyB, keyI;
 
-var once = false;
-
 var p, n, distanceBetween2PC;
 
 var camera;
@@ -225,7 +223,8 @@ export default class Level0AdosCity extends Phaser.Scene {
 
         this.keyI = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.I);
         
-
+        this.events.emit('displayHUD');
+        
     }
 
 
@@ -244,7 +243,11 @@ export default class Level0AdosCity extends Phaser.Scene {
             console.log("Invocation");
             if(this.player.sprite.x > 2091 &&  this.player.sprite.x < 2117 && this.player.sprite.y > 2980 && this.player.sprite.y < 3000) {
                console.log("Call the Ancient One");
+               this.events.emit('invokeAncientOne');
                camera.shake(500);
+
+               this.time.delayedCall(500, removeTextDialog, [], this);
+
             }
             this.keyOnceI = true;
           }
@@ -254,10 +257,15 @@ export default class Level0AdosCity extends Phaser.Scene {
           this.keyOnceI = false;
         }
 
-
-
-
  
     }
+
+
+
 }
+
+function removeTextDialog() {
+    this.events.emit('removeTextDialog');
+}
+
 

@@ -16,7 +16,7 @@ export default class Menu extends Phaser.Scene {
   }
 
   preload() {
-        this.load.image('background', 'assets/images/team.jpg');
+        this.load.image('background', 'assets/images/solomonkane.jpg');
         this.load.audio('bgMusic', 'assets/theme/Surrounded-by-the-Enemy.mp3');
     }
 

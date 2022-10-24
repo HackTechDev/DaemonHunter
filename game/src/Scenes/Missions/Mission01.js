@@ -19,7 +19,7 @@ export default class Mission1 extends Phaser.Scene {
     
 
     this.text = this.add.text(300, 100, 'Invocation 1', { fontSize: 40 });
-    this.mission1Text = this.add.text(100, 190, 'Invoquer un Grand Ancien :\n Se placer au milieu d\'un pentacle\n en pleine nuit.', { fontSize: 24 });
+    this.mission1Text = this.add.text(100, 190, 'Invoquer un Grand Ancien :\n- Se placer au milieu d\'un pentacle\n en pleine nuit.\n- Appuyer 3 fois de suite sur la touche [I] \npour invoquer un démon', { fontSize: 24 });
 
     if(this.previousScene === undefined) {
       this.menuButton = new Button(this, 400, 500, 'blueButton1', 'blueButton2', 'En avant !', 'Level0AdosCity');
